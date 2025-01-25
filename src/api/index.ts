@@ -1,6 +1,6 @@
-import { DummyProductResponse } from "@/types";
+import { DummyProductResponse } from "@/types/product";
 
-export const fetchProducts = async () => {
+export const fetchProducts = async (): Promise<DummyProductResponse> => {
   try {
     const response = await fetch("https://dummyjson.com/products");
     if (!response.ok) {
