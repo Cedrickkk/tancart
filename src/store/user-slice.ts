@@ -5,7 +5,7 @@ export type UserState = {
   address: string;
 };
 
-export type UserAction = {
+type UserAction = {
   setAddress: (address: string) => void;
 };
 

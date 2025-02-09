@@ -12,3 +12,10 @@ export type Product = {
   price: number;
   images: string[];
 };
+
+export type CartProduct = {
+  id: number;
+  quantity: number;
+  title: string;
+  price: number;
+};

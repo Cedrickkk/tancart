@@ -1,5 +1,5 @@
-import { CartProduct, Product } from "@/types/products";
 import { StateCreator } from "zustand";
+import { CartProduct, Product } from "../types/product";
 
 export type CartState = {
   items: CartProduct[];
@@ -7,7 +7,8 @@ export type CartState = {
 };
 
 export type CartAction = {
-  addProduct: (product: Product) => void;
+  addItemToCart: (product: Product) => void;
+  removeItemFromCart: (product: CartProduct) => void;
 };
 
 export type CartSlice = CartState & CartAction;
@@ -21,4 +22,16 @@ export const createCartSlice: StateCreator<CartSlice, [], [], CartSlice> = (
   set,
 ) => ({
   ...initialState,
+  addItemToCart: (product) => {
+    set((state) => ({
+      ...state,
+      items: [...state.items, { ...product, quantity: 1 }],
+      total: state.total + product.price,
+    }));
+  },
+  removeItemFromCart: (product) => {
+    set((state) => ({
+      items: state.items.filter((item) => item.id !== product.id),
+    }));
+  },
 });
